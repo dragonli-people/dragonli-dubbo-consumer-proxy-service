@@ -1,0 +1,179 @@
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.dragonli.service</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>dragonli-dubbo-consumer-proxy-service</artifactId>
+	<packaging>jar</packaging>
+	<name>dragonli-dubbo-consumer-proxy-service</name>
+	<version>1.0</version>
+
+	<properties>
+		<interface.groupId1>org.dragonli.service</interface.groupId1>
+		<interface.artifactId1>dragonli-dubbo-service-core</interface.artifactId1>
+		<interface.version1>1.0</interface.version1>
+
+		<interface.groupId2>org.dragonli.service</interface.groupId2>
+		<interface.artifactId2>dragonli-dubbo-service-core</interface.artifactId2>
+		<interface.version2>1.0</interface.version2>
+
+		<interface.groupId3>org.dragonli.service</interface.groupId3>
+		<interface.artifactId3>dragonli-dubbo-service-core</interface.artifactId3>
+		<interface.version3>1.0</interface.version3>
+
+		<interface.groupId4>org.dragonli.service</interface.groupId4>
+		<interface.artifactId4>dragonli-dubbo-service-core</interface.artifactId4>
+		<interface.version4>1.0</interface.version4>
+
+		<interface.groupId5>org.dragonli.service</interface.groupId5>
+		<interface.artifactId5>dragonli-dubbo-service-core</interface.artifactId5>
+		<interface.version5>1.0</interface.version5>
+
+		<interface.groupId6>org.dragonli.service</interface.groupId6>
+		<interface.artifactId6>dragonli-dubbo-service-core</interface.artifactId6>
+		<interface.version6>1.0</interface.version6>
+
+		<interface.groupId7>org.dragonli.service</interface.groupId7>
+		<interface.artifactId7>dragonli-dubbo-service-core</interface.artifactId7>
+		<interface.version7>1.0</interface.version7>
+
+		<interface.groupId8>org.dragonli.service</interface.groupId8>
+		<interface.artifactId8>dragonli-dubbo-service-core</interface.artifactId8>
+		<interface.version8>1.0</interface.version8>
+
+		<interface.groupId9>org.dragonli.service</interface.groupId9>
+		<interface.artifactId9>dragonli-dubbo-service-core</interface.artifactId9>
+		<interface.version9>1.0</interface.version9>
+
+		<interface.groupId10>org.dragonli.service</interface.groupId10>
+		<interface.artifactId10>dragonli-dubbo-service-core</interface.artifactId10>
+		<interface.version10>1.0</interface.version10>
+
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>interface1</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId1}</groupId>
+					<artifactId>${interface.artifactId1}</artifactId>
+					<version>${interface.version1}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface2</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId2}</groupId>
+					<artifactId>${interface.artifactId2}</artifactId>
+					<version>${interface.version2}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface3</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId3}</groupId>
+					<artifactId>${interface.artifactId3}</artifactId>
+					<version>${interface.version3}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface4</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId4}</groupId>
+					<artifactId>${interface.artifactId4}</artifactId>
+					<version>${interface.version4}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface5</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId5}</groupId>
+					<artifactId>${interface.artifactId5}</artifactId>
+					<version>${interface.version5}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface6</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId6}</groupId>
+					<artifactId>${interface.artifactId6}</artifactId>
+					<version>${interface.version6}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface7</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId7}</groupId>
+					<artifactId>${interface.artifactId7}</artifactId>
+					<version>${interface.version7}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface8</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId8}</groupId>
+					<artifactId>${interface.artifactId8}</artifactId>
+					<version>${interface.version8}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface9</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId9}</groupId>
+					<artifactId>${interface.artifactId9}</artifactId>
+					<version>${interface.version9}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>interface10</id>
+			<dependencies>
+				<dependency>
+					<groupId>${interface.groupId10}</groupId>
+					<artifactId>${interface.artifactId10}</artifactId>
+					<version>${interface.version10}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.dragonli.service</groupId>
+			<artifactId>dragonli-dubbo-service-core</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dragonli.service</groupId>
+			<artifactId>dragonli-netty-core</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+	</dependencies>
+
+
+</project>
