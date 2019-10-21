@@ -46,3 +46,7 @@ rm -rf pom.xml
 mv pom.xml.tmp pom.xml
 mvn clean install
 
+1 您可以修改service.micro-service.dubbo-consumer-proxy-service来修改服务所需的配置
+1 与所有服务一样，您可以设置 --MICRO_SERVICE_PORT、--MICRO_SERVICE_HTTP_PORT分别用来覆盖微服务端口号、http端口号，（尤其是在端口号冲突之时）
+1 您可以通过 --MICRO_SERVICE_NETTY_PORT 覆盖给nodejs访问的端口
+1 您可以通过 --MICRO_SERVICE_TELNET_PORT 覆盖telnet命令端口
