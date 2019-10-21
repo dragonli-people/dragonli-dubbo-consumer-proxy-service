@@ -23,3 +23,26 @@ mvn \
 -Dinterface.version1=5.1.2.RELEASE \
 clean install
 可支持10项这样的配置
+
+1 另外还有一种便捷的增加依赖包的方式。您也可以使用类似下面linux shell脚本：
+
+dps=" \
+ \
+<dependency> \
+<groupId>org.dragonli.service<\/groupId> \
+<artifactId>dragonli-general-service-interfaces<\/artifactId> \
+<version>1.0<\/version> \
+<\/dependency> \
+ \
+<dependency> \
+<groupId>org.springframework<\/groupId> \
+<artifactId>dragonli-netty-core<\/artifactId> \
+<version>1.0<\/version> \
+<\/dependency> \
+ \
+"
+sed "s/<\!-- extend dependencies begin -->.*<\!-- extend dependencies end -->/<\!-- extend dependencies begin --> $dps <\!-- extend dependencies end -->/g" pom.xml > pom.xml.tmp
+rm -rf pom.xml
+mv pom.xml.tmp pom.xml
+mvn clean install
+

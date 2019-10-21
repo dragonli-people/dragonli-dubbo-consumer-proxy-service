@@ -173,6 +173,8 @@
 			<version>1.0</version>
 		</dependency>
 
+		<!-- extend dependencies begin -->  <!-- extend dependencies end -->
+
 	</dependencies>
 
 
