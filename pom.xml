@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>org.dragonli.service</groupId>
-		<artifactId>parent</artifactId>
+		<artifactId>dubbo-service-parent</artifactId>
 		<version>1.0</version>
 	</parent>
 
@@ -14,6 +14,10 @@
 	<version>1.0</version>
 
 	<properties>
+		<interface.groupId0>org.dragonli.service</interface.groupId0>
+		<interface.artifactId0>dragonli-dubbo-service-core</interface.artifactId0>
+		<interface.version0>1.0</interface.version0>
+
 		<interface.groupId1>org.dragonli.service</interface.groupId1>
 		<interface.artifactId1>dragonli-dubbo-service-core</interface.artifactId1>
 		<interface.version1>1.0</interface.version1>
@@ -50,13 +54,19 @@
 		<interface.artifactId9>dragonli-dubbo-service-core</interface.artifactId9>
 		<interface.version9>1.0</interface.version9>
 
-		<interface.groupId10>org.dragonli.service</interface.groupId10>
-		<interface.artifactId10>dragonli-dubbo-service-core</interface.artifactId10>
-		<interface.version10>1.0</interface.version10>
-
 	</properties>
 
 	<profiles>
+        <profile>
+            <id>interface0</id>
+            <dependencies>
+                <dependency>
+                    <groupId>${interface.groupId0}</groupId>
+                    <artifactId>${interface.artifactId0}</artifactId>
+                    <version>${interface.version0}</version>
+                </dependency>
+            </dependencies>
+        </profile>
 		<profile>
 			<id>interface1</id>
 			<dependencies>
@@ -147,25 +157,10 @@
 				</dependency>
 			</dependencies>
 		</profile>
-		<profile>
-			<id>interface10</id>
-			<dependencies>
-				<dependency>
-					<groupId>${interface.groupId10}</groupId>
-					<artifactId>${interface.artifactId10}</artifactId>
-					<version>${interface.version10}</version>
-				</dependency>
-			</dependencies>
-		</profile>
+
 	</profiles>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>org.dragonli.service</groupId>
-			<artifactId>dragonli-dubbo-service-core</artifactId>
-			<version>1.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.dragonli.service</groupId>
