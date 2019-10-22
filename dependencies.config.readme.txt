@@ -1,0 +1,51 @@
+有两种方式可以支持动态增加依赖（主要用于增加包含微服务接口类的依赖包）
+
+================================
+
+第一种是简捷模式，在mvn打包命令执行时加入参数，如下示例：
+mvn -Pinterface0 \
+-Dinterface.groupId0=org.dragonli.service \
+-Dinterface.artifactId0=dragonli-general-service-interfaces \
+-Dinterface.version0=1.0 \
+clean install
+
+注意：${index}组的配置由-Pinterface${index} 和 -Dinterface.groupId${index} -Dinterface.artifactId${index} -Dinterface.version${index} 组成
+其中${index}支持0~9共10个组。-Pinterface${index}表示激活该组配置，后面三项为该组dependency的group、artifactId、version
+多个依赖示例如下：
+mvn \
+-Pinterface0 \
+-Dinterface.groupId0=org.springframework \
+-Dinterface.artifactId0=spring-jdbc \
+-Dinterface.version0=5.1.2.RELEASE \
+-Pinterface1 \
+-Dinterface.groupId1=org.dragonli.service \
+-Dinterface.artifactId1=dragonli-general-service-interfaces \
+-Dinterface.version1=1.0 \
+clean install
+
+===================================
+
+第二种方式是借助linux脚本，在mvn打包之前修改pom文件的内容（pom文件为替换内容预留了关键字以便使用脚本替换）
+linux shell脚本示例：
+
+#方便起见，dps形成的文本不要包含换行符
+dps=" \
+ \
+<dependency> \
+<groupId>org.dragonli.service<\/groupId> \
+<artifactId>dragonli-general-service-interfaces<\/artifactId> \
+<version>1.0<\/version> \
+<\/dependency> \
+ \
+<dependency> \
+<groupId>org.springframework<\/groupId> \
+<artifactId>dragonli-netty-core<\/artifactId> \
+<version>1.0<\/version> \
+<\/dependency> \
+"
+#<\!-- extend dependencies begin -->.*<\!-- extend dependencies end -->为pom中预留的内容，便于插入
+#替换完毕建议保留<\!-- extend dependencies begin --> (您加的依赖) <\!-- extend dependencies end --> 这样的格式，以便下次替换
+sed "s/<\!-- extend dependencies begin -->.*<\!-- extend dependencies end -->/<\!-- extend dependencies begin --> $dps <\!-- extend dependencies end -->/g" pom.xml > pom.xml.tmp
+rm -rf pom.xml
+mv pom.xml.tmp pom.xml
+mvn clean install
