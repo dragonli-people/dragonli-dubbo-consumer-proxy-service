@@ -6,7 +6,7 @@
 mvn -Pinterface0 \
 -Dinterface.groupId0=org.dragonli.service \
 -Dinterface.artifactId0=dragonli-general-service-interfaces \
--Dinterface.version0=1.0.1 \
+-Dinterface.version0=1.0.2 \
 clean install
 
 注意：${index}组的配置由-Pinterface${index} 和 -Dinterface.groupId${index} -Dinterface.artifactId${index} -Dinterface.version${index} 组成
@@ -20,7 +20,7 @@ mvn \
 -Pinterface1 \
 -Dinterface.groupId1=org.dragonli.service \
 -Dinterface.artifactId1=dragonli-general-service-interfaces \
--Dinterface.version1=1.0.1 \
+-Dinterface.version1=1.0.2 \
 clean install
 
 ===================================
@@ -34,13 +34,13 @@ dps=" \
 <dependency> \
 <groupId>org.dragonli.service<\/groupId> \
 <artifactId>dragonli-general-service-interfaces<\/artifactId> \
-<version>1.0.1<\/version> \
+<version>1.0.2<\/version> \
 <\/dependency> \
  \
 <dependency> \
 <groupId>org.springframework<\/groupId> \
 <artifactId>dragonli-netty-core<\/artifactId> \
-<version>1.0.1<\/version> \
+<version>1.0.2<\/version> \
 <\/dependency> \
 "
 #<\!-- extend dependencies begin -->.*<\!-- extend dependencies end -->为pom中预留的内容，便于插入
