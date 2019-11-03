@@ -44,9 +44,10 @@ public class DubboConsumerThreadHandler implements Runnable, IDataCachePool {
                 return;
             }
 
-            String res = JSON.toJSONString(
-                    DubboConsumerUtil.invoke(invoker, interfaceName.toString(), methodName.toString(),
-                            (JSONArray) parameters, group));
+            Map<String,Object> result = DubboConsumerUtil.invoke(invoker, interfaceName.toString(), methodName.toString(),
+                    (JSONArray) parameters, group);
+            if( requestId != null ) result.put("requestId",requestId);
+            String res = JSON.toJSONString(result);
 
 
             one.writeAndFlush(new TextWebSocketFrame(res));
