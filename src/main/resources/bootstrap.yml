@@ -7,3 +7,5 @@ spring:
     config:
       uri: ${CONFIG_SERVER:http://127.0.0.1:8888}
       fail-fast: true
+
+DEBUG_LOG: ${DEBUG_LOG_FLAG:false}

@@ -28,7 +28,7 @@ public class ConsumerInvoker {
     private final DubboBeanManager beanManager = new DubboBeanManager();
     private final Map<String, List<Method>> methodDic = new HashMap<>();
     private String host_port;
-    @Value("${DEBUG_LOG:false}")
+    @Value("${DEBUG_LOG}")
     private boolean debugLog;
     protected final static Logger logger = Logger.getLogger(ConsumerInvoker.class);
 

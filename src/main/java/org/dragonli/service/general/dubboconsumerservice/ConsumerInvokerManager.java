@@ -24,7 +24,7 @@ public class ConsumerInvokerManager {
     private final ConcurrentMap<String, ConcurrentMap<String, ConsumerInvoker>> invokers = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, AtomicInteger> errs = new ConcurrentHashMap<>();
     public static Logger logger = Logger.getLogger(ConsumerInvokerManager.class);
-    @Value("${DEBUG_LOG:false}")
+    @Value("${DEBUG_LOG}")
     private boolean debugLog;
     private ApplicationConfig application;
     private RegistryConfig registry;

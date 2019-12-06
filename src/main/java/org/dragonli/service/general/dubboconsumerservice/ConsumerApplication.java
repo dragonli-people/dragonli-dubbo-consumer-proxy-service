@@ -22,7 +22,8 @@ public class ConsumerApplication extends DubboApplicationBase {
 			@Value("${service.micro-service.dubbo-consumer-proxy-service.protocol-name}") String protocolName,
 			@Value("${service.micro-service.dubbo-consumer-proxy-service.protocol-port}") Integer protocolPort,
 			@Value("${service.micro-service.dubbo-consumer-proxy-service.scan}") String registryId,
-			@Value("${service.micro-service.dubbo-consumer-proxy-service.http-port}") int port
+			@Value("${service.micro-service.dubbo-consumer-proxy-service.http-port}") int port,
+            @Value("${DEBUG_LOG}") boolean debugLog
 		) throws Exception
 	{
 		//测试动态打包的代码
@@ -33,6 +34,7 @@ public class ConsumerApplication extends DubboApplicationBase {
 //		Class clz3 = Class.forName("com.twilio.base.ResourceSet");
 //		System.out.println(clz3.getName());
 		super(applicationName, registryAddr, protocolName, protocolPort, registryId, port);
+		System.out.println("debugLog:"+debugLog);
 	}
 
 	@SuppressWarnings(value = "unused")
