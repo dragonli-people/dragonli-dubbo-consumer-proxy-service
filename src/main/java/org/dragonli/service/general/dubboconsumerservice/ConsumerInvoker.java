@@ -114,7 +114,7 @@ public class ConsumerInvoker {
                 break;
             }
         }
-        if (ConsumerVars.debugLog) logger.info(mmm.getName() + "{} find method:{}" + (mmm != null));
+        if (ConsumerVars.debugLog) logger.info( "{} find method:{}", mmm.getName(), (mmm != null));
         if (mmm == null) {
             //return
             return ConsumerInvokerManager.createErrMsg(ConsumerInvokerManager.ERR_PARAMETERS_TYPE_WRONG);
