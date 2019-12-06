@@ -34,7 +34,7 @@ public class ConsumerApplication extends DubboApplicationBase {
 //		Class clz3 = Class.forName("com.twilio.base.ResourceSet");
 //		System.out.println(clz3.getName());
 		super(applicationName, registryAddr, protocolName, protocolPort, registryId, port);
-		System.out.println("debugLog:"+debugLog);
+		System.out.println("===========debugLog:"+debugLog);
 	}
 
 	@SuppressWarnings(value = "unused")

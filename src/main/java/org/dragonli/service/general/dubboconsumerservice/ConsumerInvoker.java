@@ -28,8 +28,7 @@ public class ConsumerInvoker {
     private final DubboBeanManager beanManager = new DubboBeanManager();
     private final Map<String, List<Method>> methodDic = new HashMap<>();
     private String host_port;
-    @Value("${DEBUG_LOG}")
-    private boolean debugLog;
+    @Value("${DEBUG_LOG}") boolean debugLog;
     protected final static Logger logger = Logger.getLogger(ConsumerInvoker.class);
 
     public boolean init(String name, ApplicationConfig application, RegistryConfig registry, String group) {
@@ -84,6 +83,7 @@ public class ConsumerInvoker {
     public Map<String, Object> invoke(String mName, Object[] paras) {
         //must had init success
         logger.info("debug log flag is :" + debugLog);
+        System.out.println("debugLog:"+debugLog);
         List<Method> mList = methodDic.get(mName);
         if (mList == null || mList.size() == 0) {
             //return
@@ -93,7 +93,6 @@ public class ConsumerInvoker {
         Method mmm = null;
         for (Method mm : mList) {
             boolean f = false;
-            System.out.println("debugLog:"+debugLog);
             if (debugLog)logger.info("paras==null:"+(paras==null)+";mm==null:"+(mm==null)+";mm.getParameterTypes()==null:"+(mm.getParameterTypes()==null));
             if (debugLog) logger.info("paras::" + "||paras.length:" + paras.length + "mm.getParameterTypes().length::" +
                     mm.getParameterTypes().length + "||mm.getName()::" + mm.getName() + "||mName::" + mName);
