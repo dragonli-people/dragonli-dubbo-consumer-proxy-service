@@ -18,6 +18,7 @@ import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.fastjson.JSON;
 import org.dragonli.service.dubbosupport.DubboBeanManager;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * @author dev
@@ -30,6 +31,8 @@ public class ConsumerInvoker {
 	private final DubboBeanManager beanManager = new DubboBeanManager();
 	private final Map<String,List<Method>> methodDic = new HashMap<>();
 	private String host_port;
+	@Value("${DEBUG_LOG:false}")
+	private Boolean debugLog;
 	protected final static Logger logger = Logger.getLogger(ConsumerInvoker.class);
 	public boolean init(String name,ApplicationConfig application , RegistryConfig registry ,String group)
 	{
@@ -102,24 +105,30 @@ public class ConsumerInvoker {
 		for( Method mm : mList )
 		{
 			boolean f = false;
-			System.out.println("paras::"+ "||paras.length:" +paras.length +"mm.getParameterTypes().length::"+ mm.getParameterTypes().length +"||mm.getName()::"+ mm.getName() +"||mName::"+ mName);
+			if(debugLog)
+				logger.info("paras::"+ "||paras.length:" +paras.length +"mm.getParameterTypes().length::"+ mm.getParameterTypes().length +"||mm.getName()::"+ mm.getName() +"||mName::"+ mName);
 			if( paras.length == mm.getParameterTypes().length && mm.getName().equals(mName)  )
 			{
 				f = true;
 				for( int j = 0 ; j < paras.length ; j++ )
 				{
-					System.out.println("valicodeClassType(mm.getParameterTypes()[j],paras[j])::"+valicodeClassType(mm.getParameterTypes()[j],paras[j])+"|||mm.getParameterTypes()[j]::"+JSON.toJSONString(mm.getParameterTypes()[j])+"||paras[j]::"+paras[j]);
-					if( !valicodeClassType(mm.getParameterTypes()[j],paras[j]) )
+					boolean valicode = valicodeClassType(mm.getParameterTypes()[j],paras[j]);
+					if(debugLog)
+						logger.info("valicodeClassType(mm.getParameterTypes()["+j+"],paras["+j+"])::"+valicode+"|||mm.getParameterTypes()["+j+"]::"+JSON.toJSONString(mm.getParameterTypes()[j])+"||paras["+j+"]::"+paras[j]);
+					if( !valicode )
 					{
 						f = false;
 						break;
 					}
 				}
 			}
-			if( f )
+			if( f ){
 				mmm = mm;
+				break;
+			}
 		}
-		
+		if(debugLog)
+			logger.info(mmm.getName()+ "{} find method:{}"+(mmm!=null));
 		if(mmm==null)
 		{
 			//return
@@ -129,13 +138,17 @@ public class ConsumerInvoker {
 		Object result = null;
 		try
 		{
-			logger.info("step -1 paras.length"+paras.length);
+			if(debugLog)
+				logger.info("step -1 paras.length"+paras.length);
 			for(int i = 0 ; i<paras.length;i++){
-				logger.info("i:"+i+"|paras[i]:"+paras[i].toString());
+				if(debugLog)
+					logger.info("i:"+i+"|paras[i]:"+paras[i].toString());
 				paras[i] = this.castValueForInvoke(mmm.getParameterTypes()[i], paras[i]);
 			}
-			logger.info("step -2 paras.length"+paras.length);
-			logger.info("beanManager.getBean():"+beanManager.getBean().getClass());
+			if(debugLog){
+				logger.info("step -2 paras.length"+paras.length);
+				logger.info("beanManager.getBean():"+beanManager.getBean().getClass());
+			}
 			result =  mmm.invoke(beanManager.getBean(),paras);
 		}
 		catch(Exception e)
