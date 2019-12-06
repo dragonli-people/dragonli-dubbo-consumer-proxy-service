@@ -7,8 +7,6 @@ import java.util.Map;
 public class DubboConsumerUtil {
     public static Map<String,Object> invoke(ConsumerInvokerManager invoker,String interfaceName,String methodName,JSONArray parameters,String group) throws Exception{
 
-
-
         Object[] paras = new Object[((JSONArray)parameters).size()];
         for(int i = 0 ; i< paras.length;i++)
             paras[i] = ((JSONArray)parameters).get(i);

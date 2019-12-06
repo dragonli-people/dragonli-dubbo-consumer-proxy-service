@@ -93,6 +93,7 @@ public class ConsumerInvoker {
         Method mmm = null;
         for (Method mm : mList) {
             boolean f = false;
+            if (debugLog)logger.info("paras==null:"+(paras==null)+";mm==null:"+(mm==null)+";mm.getParameterTypes()==null:"+(mm.getParameterTypes()==null));
             if (debugLog) logger.info("paras::" + "||paras.length:" + paras.length + "mm.getParameterTypes().length::" +
                     mm.getParameterTypes().length + "||mm.getName()::" + mm.getName() + "||mName::" + mName);
             if (paras.length == mm.getParameterTypes().length && mm.getName().equals(mName)) {
