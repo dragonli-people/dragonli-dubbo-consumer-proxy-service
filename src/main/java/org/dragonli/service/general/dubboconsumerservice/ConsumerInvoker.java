@@ -105,6 +105,7 @@ public class ConsumerInvoker {
 		for( Method mm : mList )
 		{
 			boolean f = false;
+			logger.info("debug log flag is :"+debugLog);
 			if(debugLog)
 				logger.info("paras::"+ "||paras.length:" +paras.length +"mm.getParameterTypes().length::"+ mm.getParameterTypes().length +"||mm.getName()::"+ mm.getName() +"||mName::"+ mName);
 			if( paras.length == mm.getParameterTypes().length && mm.getName().equals(mName)  )
@@ -147,7 +148,7 @@ public class ConsumerInvoker {
 			}
 			if(debugLog){
 				logger.info("step -2 paras.length"+paras.length);
-				logger.info("beanManager.getBean():"+beanManager.getBean().getClass());
+				logger.info("exec invoke:beanManager.getBean():"+beanManager.getBean().getClass());
 			}
 			result =  mmm.invoke(beanManager.getBean(),paras);
 		}
