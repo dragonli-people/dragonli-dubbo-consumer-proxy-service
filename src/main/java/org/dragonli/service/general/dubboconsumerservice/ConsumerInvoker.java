@@ -28,7 +28,6 @@ public class ConsumerInvoker {
     private final DubboBeanManager beanManager = new DubboBeanManager();
     private final Map<String, List<Method>> methodDic = new HashMap<>();
     private String host_port;
-    @Value("${DEBUG_LOG}") boolean debugLog;
     protected final static Logger logger = Logger.getLogger(ConsumerInvoker.class);
 
     public boolean init(String name, ApplicationConfig application, RegistryConfig registry, String group) {
@@ -82,8 +81,8 @@ public class ConsumerInvoker {
 
     public Map<String, Object> invoke(String mName, Object[] paras) {
         //must had init success
-        logger.info("debug log flag is :" + debugLog);
-        System.out.println("debugLog:"+debugLog);
+        logger.info("debug log flag is :" + ConsumerVars.debugLog);
+        System.out.println("ConsumerVars.debugLog:"+ConsumerVars.debugLog);
         List<Method> mList = methodDic.get(mName);
         if (mList == null || mList.size() == 0) {
             //return
@@ -93,14 +92,14 @@ public class ConsumerInvoker {
         Method mmm = null;
         for (Method mm : mList) {
             boolean f = false;
-            if (debugLog)logger.info("paras==null:"+(paras==null)+";mm==null:"+(mm==null)+";mm.getParameterTypes()==null:"+(mm.getParameterTypes()==null));
-            if (debugLog) logger.info("paras::" + "||paras.length:" + paras.length + "mm.getParameterTypes().length::" +
+            if (ConsumerVars.debugLog)logger.info("paras==null:"+(paras==null)+";mm==null:"+(mm==null)+";mm.getParameterTypes()==null:"+(mm.getParameterTypes()==null));
+            if (ConsumerVars.debugLog) logger.info("paras::" + "||paras.length:" + paras.length + "mm.getParameterTypes().length::" +
                     mm.getParameterTypes().length + "||mm.getName()::" + mm.getName() + "||mName::" + mName);
             if (paras.length == mm.getParameterTypes().length && mm.getName().equals(mName)) {
                 f = true;
                 for (int j = 0; j < paras.length; j++) {
                     boolean valicode = valicodeClassType(mm.getParameterTypes()[j], paras[j]);
-                    if (debugLog) logger.info(
+                    if (ConsumerVars.debugLog) logger.info(
                             "valicodeClassType(mm.getParameterTypes()[" + j + "],paras[" + j + "])::" + valicode +
                                     "|||mm.getParameterTypes()[" + j + "]::" +
                                     JSON.toJSONString(mm.getParameterTypes()[j]) + "||paras[" + j + "]::" + paras[j]);
@@ -115,7 +114,7 @@ public class ConsumerInvoker {
                 break;
             }
         }
-        if (debugLog) logger.info(mmm.getName() + "{} find method:{}" + (mmm != null));
+        if (ConsumerVars.debugLog) logger.info(mmm.getName() + "{} find method:{}" + (mmm != null));
         if (mmm == null) {
             //return
             return ConsumerInvokerManager.createErrMsg(ConsumerInvokerManager.ERR_PARAMETERS_TYPE_WRONG);
@@ -123,12 +122,12 @@ public class ConsumerInvoker {
 
         Object result = null;
         try {
-            if (debugLog) logger.info("step -1 paras.length" + paras.length);
+            if (ConsumerVars.debugLog) logger.info("step -1 paras.length" + paras.length);
             for (int i = 0; i < paras.length; i++) {
-                if (debugLog) logger.info("i:" + i + "|paras[i]:" + paras[i].toString());
+                if (ConsumerVars.debugLog) logger.info("i:" + i + "|paras[i]:" + paras[i].toString());
                 paras[i] = this.castValueForInvoke(mmm.getParameterTypes()[i], paras[i]);
             }
-            if (debugLog) {
+            if (ConsumerVars.debugLog) {
                 logger.info("step -2 paras.length" + paras.length);
                 logger.info("exec invoke:beanManager.getBean():" + beanManager.getBean().getClass());
             }

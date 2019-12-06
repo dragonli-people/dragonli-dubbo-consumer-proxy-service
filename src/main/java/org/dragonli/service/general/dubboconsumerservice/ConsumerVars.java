@@ -11,4 +11,6 @@ public class ConsumerVars {
 	public static void setPausing(Boolean pausing) {
 		ConsumerVars.pausing = pausing;
 	}
+
+	public static boolean debugLog = false;
 }

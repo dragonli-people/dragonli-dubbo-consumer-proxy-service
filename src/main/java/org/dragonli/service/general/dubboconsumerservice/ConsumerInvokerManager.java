@@ -24,7 +24,6 @@ public class ConsumerInvokerManager {
     private final ConcurrentMap<String, ConcurrentMap<String, ConsumerInvoker>> invokers = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, AtomicInteger> errs = new ConcurrentHashMap<>();
     public static Logger logger = Logger.getLogger(ConsumerInvokerManager.class);
-    @Value("${DEBUG_LOG}") boolean debugLog;
     private ApplicationConfig application;
     private RegistryConfig registry;
     protected static final String ERR_NO_SUCH_INTERFACE = "no such interface";
@@ -39,7 +38,7 @@ public class ConsumerInvokerManager {
 
     public Map<String, Object> invoker(String interfaceName, String methodName, Object[] paras, String group) {
 
-        if (debugLog) logger.info(
+        if (ConsumerVars.debugLog) logger.info(
                 "invoker-args:|interfaceName:" + interfaceName + "|methodName:" + methodName + "|paras:" +
                         paras.toString() + "|group:" + group);
 
