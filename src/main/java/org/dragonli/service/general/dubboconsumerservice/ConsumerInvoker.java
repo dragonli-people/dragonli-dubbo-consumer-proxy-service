@@ -1,5 +1,12 @@
 package org.dragonli.service.general.dubboconsumerservice;
 
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
+import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.dragonli.service.dubbosupport.DubboBeanManager;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -12,13 +19,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.log4j.Logger;
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.RegistryConfig;
-import com.alibaba.fastjson.JSON;
-import org.dragonli.service.dubbosupport.DubboBeanManager;
-import org.springframework.beans.factory.annotation.Value;
-
 /**
  * @author dev
  */
@@ -28,7 +28,7 @@ public class ConsumerInvoker {
     private final DubboBeanManager beanManager = new DubboBeanManager();
     private final Map<String, List<Method>> methodDic = new HashMap<>();
     private String host_port;
-    protected final static Logger logger = Logger.getLogger(ConsumerInvoker.class);
+    protected static final Logger logger = LoggerFactory.getLogger(ConsumerInvoker.class);
 
     public boolean init(String name, ApplicationConfig application, RegistryConfig registry, String group) {
 //		if(hadInit.get())
@@ -81,7 +81,7 @@ public class ConsumerInvoker {
 
     public Map<String, Object> invoke(String mName, Object[] paras) {
         //must had init success
-        logger.info("debug log flag is :" + ConsumerVars.debugLog);
+        logger.info("ConsumerVars.debugLog :" + ConsumerVars.debugLog);
         System.out.println("ConsumerVars.debugLog:"+ConsumerVars.debugLog);
         List<Method> mList = methodDic.get(mName);
         if (mList == null || mList.size() == 0) {

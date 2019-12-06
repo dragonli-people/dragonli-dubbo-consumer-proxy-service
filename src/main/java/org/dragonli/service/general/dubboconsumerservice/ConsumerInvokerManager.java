@@ -3,17 +3,17 @@
  */
 package org.dragonli.service.general.dubboconsumerservice;
 
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.RegistryConfig;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 /**
  * @author dev
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 public class ConsumerInvokerManager {
     private final ConcurrentMap<String, ConcurrentMap<String, ConsumerInvoker>> invokers = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, AtomicInteger> errs = new ConcurrentHashMap<>();
-    public static Logger logger = Logger.getLogger(ConsumerInvokerManager.class);
+    public static Logger logger = LoggerFactory.getLogger(ConsumerInvokerManager.class);
     private ApplicationConfig application;
     private RegistryConfig registry;
     protected static final String ERR_NO_SUCH_INTERFACE = "no such interface";
