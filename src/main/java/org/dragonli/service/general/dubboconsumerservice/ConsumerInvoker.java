@@ -29,7 +29,7 @@ public class ConsumerInvoker {
     private final Map<String, List<Method>> methodDic = new HashMap<>();
     private String host_port;
     @Value("${DEBUG_LOG:false}")
-    private Boolean debugLog;
+    private boolean debugLog;
     protected final static Logger logger = Logger.getLogger(ConsumerInvoker.class);
 
     public boolean init(String name, ApplicationConfig application, RegistryConfig registry, String group) {
