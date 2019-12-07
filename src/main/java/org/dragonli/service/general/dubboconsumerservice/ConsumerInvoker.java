@@ -159,7 +159,7 @@ public class ConsumerInvoker {
 
     private boolean valicodeClassType(Class<?> cls, Object value) {
 //		Field f = cls.getDeclaredField("TYPE");
-        if (value == null) return cls.isInstance(value);
+        if (value == null) return true;
 
         if (ifNumberClass(cls) && value instanceof Number) return true;//all is number
 
