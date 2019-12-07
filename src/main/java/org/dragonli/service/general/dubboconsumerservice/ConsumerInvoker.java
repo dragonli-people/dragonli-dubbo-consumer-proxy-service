@@ -124,7 +124,7 @@ public class ConsumerInvoker {
         try {
             if (ConsumerVars.debugLog) logger.info("step -1 paras.length" + paras.length);
             for (int i = 0; i < paras.length; i++) {
-                if (ConsumerVars.debugLog) logger.info("i:" + i + "|paras[i]:" + paras[i].toString());
+                if (ConsumerVars.debugLog) logger.info("i:" + i + "|paras[i]:" + (paras[i] == null ? null : paras[i].toString()));
                 paras[i] = this.castValueForInvoke(mmm.getParameterTypes()[i], paras[i]);
             }
             if (ConsumerVars.debugLog) {
